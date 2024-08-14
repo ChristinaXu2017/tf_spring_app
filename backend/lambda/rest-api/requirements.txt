@@ -1,0 +1,2 @@
+# Your requirements goes here
+numpy==2.0.0
