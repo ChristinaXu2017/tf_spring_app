@@ -22,6 +22,18 @@ The server has three components.
 
 This could be any framework. But in this example I have put an angular app. When you change this, please update the relevant build commands in the `variables.tf` file.
 
+## Terraform
+
+`build.py` is angular specific. But most web frame works have either similar or simpler configurations. It just call the following functions.
+
+```bash
+pnpm install # to install the node modules for the web app
+# in between it edits the environment.ts file to update env variables as needed
+ng build # something similar to this code, but prod specific configs
+```
+
+Currently the environment file is replaced. Change the code to suit your needs.
+
 ## Deployment
 
 Make sure you have AWS credentials added to the active terminal window. Then confirm that you are pointing to the correct backend in the `backend.tf` file. This manages the state of the infrastructure deployments.

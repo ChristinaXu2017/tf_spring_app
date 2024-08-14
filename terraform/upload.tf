@@ -5,6 +5,7 @@ data "external" "build" {
     build_command    = var.build-command
     webapp_dir       = var.webapp-dir
     build_destiation = var.build-destination
+    # you can change the following, if you do, please update the build.py
     api_url          = module.app_api.stage_invoke_url
     cdn_url          = "https://${aws_cloudfront_distribution.app_distribution.domain_name}/"
   }

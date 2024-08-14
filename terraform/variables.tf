@@ -16,6 +16,7 @@ variable "tags" {
   type = map(any)
   default = {
     NAME = "template"
+    STAGE = "dev"
   }
   description = "Default tags for the deployment"
 }
