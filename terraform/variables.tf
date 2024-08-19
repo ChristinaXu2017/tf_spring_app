@@ -21,7 +21,7 @@ variable "tags" {
   description = "Default tags for the deployment"
 }
 
-# Angulart build commands
+# react build commands
 variable "webapp-dir" {
   type        = string
   description = "Relative path to webapp"
@@ -31,18 +31,18 @@ variable "webapp-dir" {
 variable "install-command" {
   type        = string
   description = "Install command to install requirements"
-  default     = "pnpm install"
+  default     = "npm install"
 }
 
 
 variable "build-command" {
   type        = string
   description = "Build command to build the webapp"
-  default     = "./node_modules/.bin/ng build --configuration production --subresource-integrity"
+  default     = "npm run build"
 }
 
 variable "build-destination" {
   type        = string
   description = "Path to built source"
-  default     = "../frontend/dist/template/browser/"
+  default     = "../frontend/build/"
 }
