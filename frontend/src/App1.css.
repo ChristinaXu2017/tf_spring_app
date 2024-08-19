@@ -1,0 +1,259 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+body {
+  background-color: #f2f2f2;
+  font-family: "Times New Roman", Times, serif;
+}
+h1 {
+  margin: 20px;
+  text-align: center;
+}
+input[type="text"], button {
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+input[type="text"] {
+  width: 200px;
+}
+button {
+  background-color: grey;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-family: "Times New Roman", Times, serif;
+}
+button:hover {
+  background-color: grey;
+  color: black;
+}
+.image-main {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+fieldset {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 20px;
+  max-width: 250px;
+  text-align: left;
+}
+legend {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+table {
+  border-collapse: collapse;
+}
+td, th {
+  border: 1px solid black;
+  padding: 5px;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+  margin-bottom: 5px;
+}
+li span {
+  margin-right: 10px;
+}
+/* Set border and padding for all cells */
+td {
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+/* Set font size and text alignment */
+td {
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Add background color to alternate rows */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Add hover effect on cells */
+td:hover {
+  background-color: #ddd;
+}
+
+/* Set font weight for header cells */
+th {
+  font-weight: bold;
+}
+
+/* Add background color to header cells */
+th {
+  background-color: #ccc;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 5;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  z-index: 5;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.contenthome {
+width: 70%;
+height: 600px;
+margin: 0 auto;
+background: linear-gradient(to bottom, #444444, #fff);
+padding: 20px;
+justify-content: center;
+}
+
+.whiteheader {
+  margin: 20px;
+  text-align: center;
+  background-color: #3C78AB;
+  color: white;
+  border-radius: 7px;
+  width: max-content;
+  display: flex;
+  justify-content: center;
+  padding: 6px;
+}
+
+/* Add custom CSS for the buttons */
+.button-container {
+display: flex;
+justify-content: center;
+margin-top: 100px;
+}
+
+.custom-button {
+margin: 0 10px;
+padding: 10px 20px;
+background-color: #0f3b62;
+color: #ffffff;
+border: none;
+border-radius: 5px;
+font-size: 16px;
+cursor: pointer;
+}
+
+.list-container {
+  margin-top: 50px;
+  background-color: white;
+  padding: 10px 10px;
+  border-radius: 7px;
+  justify-content: center;
+  text-align: left;
+}
+
+/* Style the list items */
+.list-container ol {
+  list-style: none;
+  padding: 0;
+}
+
+.list-container li {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Style the hyperlink text */
+.list-container li a {
+  text-decoration: none;
+  color: #00f; /* Blue color for hyperlink text */
+  border-bottom: 1px solid #00f; /* Add underline effect */
+  margin-left: 10px; /* Spacing between number and text */
+}
+
+/* Style the numbering */
+.list-container .number {
+  color: #000; /* Black color for numbering */
+  font-weight: bold;
+  margin-right: 10px; /* Spacing between number and text */
+}
+
