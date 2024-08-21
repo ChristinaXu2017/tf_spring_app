@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
     # update following as needed
-    bucket         = "my-terraform-states-bucket"
+    bucket         = "uts-vaccine-state"
     key            = "example"
     region         = "ap-southeast-2"
-    dynamodb_table = "my-terraform-states-table"
+    # dynamodb_table = "uts-vaccine-states-table"
   }
 }

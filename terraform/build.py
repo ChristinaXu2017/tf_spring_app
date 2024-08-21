@@ -41,12 +41,10 @@ def npm_install(cmd: str, dir: str):
 
 def update_env(url: str, cdn: str, dir: str):
     env = f"""
-export const environment = {{
-    api_url: '{url}',
-    cdn_url: '{cdn}'
-}};
+REACT_APP_API_URL={url}
+REACT_APP_CDN_URL={cdn}
 """
-    with open(f"{dir}/src/environments/environment.ts", "w+") as fo:
+    with open(f"{dir}/.env", "w+") as fo:
         fo.write(env)
 
 
@@ -57,7 +55,7 @@ def build(cmd: str, dir: str):
         stdout=sys.stderr,
     )
     code = out.wait()
-    assert code == 0, "ERROR: ng build returned non-zero exit"
+    assert code == 0, "ERROR: npm run build returned non-zero exit"
 
 
 if __name__ == "__main__":

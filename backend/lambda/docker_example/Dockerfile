@@ -26,10 +26,10 @@ COPY *.tcl ${LAMBDA_TASK_ROOT}/
 COPY *.txt ${LAMBDA_TASK_ROOT}/
 COPY *.fa ${LAMBDA_TASK_ROOT}/
 COPY *.pdb ${LAMBDA_TASK_ROOT}/
-ADD parameters ${LAMBDA_TASK_ROOT}/parameters
+#ADD parameters ${LAMBDA_TASK_ROOT}/parameters
 ADD shared ${LAMBDA_TASK_ROOT}/shared
-ADD PDB ${LAMBDA_TASK_ROOT}/PDB
-ADD Transformation ${LAMBDA_TASK_ROOT}/Transformation
+#ADD PDB ${LAMBDA_TASK_ROOT}/PDB
+#ADD Transformation ${LAMBDA_TASK_ROOT}/Transformation
 
 # Set the CMD to your handler
 CMD [ "handler.handler" ]

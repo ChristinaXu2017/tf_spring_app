@@ -22,10 +22,16 @@ function HeaderComponent() {
                         <div className="collapse navbar-collapse">
                             <ul className="navbar-nav">
                                 <li className="nav-item">
-                                    <Link className="nav-link" href="https://bioweb01.qut.edu.au/benthTPM/index.html">Home</Link>
+                                    <Link className="nav-link" to="/home/VaccineUser">Home</Link>
                                 </li>
                                 <li>
                                     <Link className="nav-link" to="/miRNA">miRNA</Link>
+                                </li>
+                                <li>
+                                    <Link className="nav-link" to="/vaccine1">vaccine1</Link>
+                                </li>
+                                <li>
+                                    <Link className="nav-link" to="/vaccine">vaccine</Link>
                                 </li>
                             </ul>
                         </div>

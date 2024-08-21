@@ -67,7 +67,7 @@ data "aws_iam_policy_document" "app_dynamodb_access" {
     ]
 
     resources = [
-      aws_dynamodb_table.job_status_table.arn,
+      aws_dynamodb_table.example_table.arn,
     ]
   }
 }

@@ -9,7 +9,7 @@ import LogoutComponent from './Logout';
 import ErrorComponent from './Error';
 import WelcomeComponent from './Welcome';
 import MiRNAComponent from './MiRNA';
-
+import VaccineComponent from './Vaccine';
 export default function MainApp() {
 
   function AuthenticatedRoute({ children }) {
@@ -24,11 +24,13 @@ export default function MainApp() {
         <BrowserRouter>
           <HeaderComponent />
           <Routes>
+            <Route path='/vaccine' element={<VaccineComponent />} />
+            <Route path='/vaccine1' element={<MiRNAComponent />} />
             <Route path='/' element={<LoginComponent />}></Route>
             <Route path='/login' element={<LoginComponent />}></Route>
             <Route path='/home/:username' element={<WelcomeComponent />}></Route>
             <Route path='/mirna' element={<MiRNAComponent />} />
-            <Route path='*' element={<ErrorComponent />}></Route>l
+            <Route path='*' element={<ErrorComponent />}></Route>
             <Route path='/logout' element={<LogoutComponent />} />
           </Routes>
           <FooterComponent />
