@@ -13,7 +13,7 @@ function HeaderComponent() {
         <header className="border-bottom border-light border-5 mb-5 p-2">
 
             <div className="container">
-                <div className="created-by"> Tools for Genome & Transcriptome -- miRNA preditcor</div>
+                <div className="created-by"> Tools for Omics data -- Vaccine Design</div>
 
                 <div className="row">
                     <nav className="navbar navbar-expand-lg">
@@ -25,13 +25,13 @@ function HeaderComponent() {
                                     <Link className="nav-link" to="/home/VaccineUser">Home</Link>
                                 </li>
                                 <li>
-                                    <Link className="nav-link" to="/miRNA">miRNA</Link>
+                                    <Link className="nav-link" to="/miRNA">RiboTree</Link>
                                 </li>
                                 <li>
-                                    <Link className="nav-link" to="/vaccine1">vaccine1</Link>
+                                    <Link className="nav-link" to="/miRNA">LinearDesign</Link>
                                 </li>
                                 <li>
-                                    <Link className="nav-link" to="/vaccine">vaccine</Link>
+                                    <Link className="nav-link" to="/jupyter">JupyterNotebook</Link>
                                 </li>
                             </ul>
                         </div>

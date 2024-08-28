@@ -20,19 +20,33 @@ module "app_api" {
   routes = {
     "ANY /{proxy+}" = {
       integration = {
-        uri                    = module.api_lambda_function.lambda_function_invoke_arn
+        uri = module.start_jupyter_lambda_function.lambda_function_invoke_arn
         payload_format_version = "2.0"
       }
     }
   }
-
-  tags = var.tags
 }
 
-resource "aws_lambda_permission" "capbuid_rest_api_lambda_permissions" {
+resource "aws_lambda_permission" "vaccine_rest_api_lambda_permissions" {
   statement_id  = "${var.app-name}_rest_api_lambda_permissions"
   action        = "lambda:InvokeFunction"
-  function_name = module.api_lambda_function.lambda_function_name
+  function_name = module.start_jupyter_lambda_function.lambda_function_name
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${module.app_api.api_execution_arn}/**"
+}
+
+# API Gateway v1 (REST API) for login
+resource "aws_api_gateway_rest_api" "VaccineApi" {
+  name        = "VaccineApi"
+  description = "API for Vaccine Application"
+}
+
+
+resource "aws_api_gateway_authorizer" "VaccineUserPoolAuthorizer" {
+  name          = "VaccineUserPoolAuthorizer"
+  type          = "COGNITO_USER_POOLS"
+  rest_api_id   = aws_api_gateway_rest_api.VaccineApi.id
+  provider_arns = [aws_cognito_user_pool.VaccineUserPool.arn]
+
+  depends_on = [aws_api_gateway_rest_api.VaccineApi]
 }

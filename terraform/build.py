@@ -47,6 +47,15 @@ REACT_APP_CDN_URL={cdn}
     with open(f"{dir}/.env", "w+") as fo:
         fo.write(env)
 
+def update_cognito_env(id: str, client: str, region: str, dir: str):
+    env = f"""
+REACT_APP_COGNITO_REGION={region}
+REACT_APP_USER_POOL_ID={id}
+REACT_APP_USER_POOL_CLIENT_ID={client}
+"""
+    with open(f"{dir}/.env", "a") as fo:
+        fo.write(env)        
+
 
 def build(cmd: str, dir: str):
     out = subprocess.Popen(
@@ -63,11 +72,15 @@ if __name__ == "__main__":
     build_cmd = args["build_command"]
     install_cmd = args["install_command"]
     webapp_dir = args["webapp_dir"]
-    build_destiation = args["build_destiation"]
+    build_destination = args["build_destination"]
     api_url = args["api_url"]
     cdn_url = args["cdn_url"]
+    cognito_client = args["cognito_client"]
+    cognito_region = args["cognito_region"]
+    cognito_id = args["cognito_id"]
 
     npm_install(install_cmd, webapp_dir)
     update_env(api_url, cdn_url, webapp_dir)
+    update_cognito_env(cognito_id, cognito_client, cognito_region, webapp_dir)
     build(build_cmd, webapp_dir)
-    print(f""" {{ "hash": "{hash_dir(build_destiation)}" }} """)
+    print(f""" {{ "hash": "{hash_dir(build_destination)}" }} """)

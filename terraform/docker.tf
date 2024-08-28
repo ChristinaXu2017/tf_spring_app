@@ -7,16 +7,16 @@ provider "docker" {
 }
 
 # docker_example lambda function
-data "external" "docker_example_lambda_source_hash" {
-  program     = ["python", "../backend/lambda/docker_example/docker_prep.py"]
+data "external" "docker_source_hash" {
+  program     = ["python", "../backend/lambda/docker_jupyter/docker_prep.py"]
   working_dir = path.module
 }
 
-module "docker_image_docker_example_lambda" {
+module "docker_jupyter_register" {
   source = "terraform-aws-modules/lambda/aws//modules/docker-build"
 
   create_ecr_repo = true
-  ecr_repo        = "docker_example-lambda-containers"
+  ecr_repo        = "uts-app1"
   ecr_repo_lifecycle_policy = jsonencode({
     "rules" : [
       {
@@ -33,10 +33,13 @@ module "docker_image_docker_example_lambda" {
       }
     ]
   })
-  use_image_tag = false
-  source_path   = "../backend/lambda/docker_example"
+  use_image_tag = true
+  image_tag = "jupyter_mrnaid_vaxpress-v2"
+  source_path   = "../backend/lambda/docker_jupyter"
 
   triggers = {
-    dir_sha = data.external.docker_example_lambda_source_hash.result.hash
+    dir_sha = data.external.docker_source_hash.result.hash
   }
+
+  
 }

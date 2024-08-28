@@ -54,7 +54,8 @@ data "aws_iam_policy_document" "app_lambda_invoke" {
     ]
 
     resources = [
-      module.docker_example_lambda_function.lambda_function_arn,
+      module.start_jupyter_lambda_function.lambda_function_arn,
+      module.stop_jupyter_lambda_function.lambda_function_arn
     ]
   }
 }
@@ -70,4 +71,47 @@ data "aws_iam_policy_document" "app_dynamodb_access" {
       aws_dynamodb_table.example_table.arn,
     ]
   }
+}
+######### create new iam role  to access S3 and ECS tasks ###############3
+resource "aws_iam_role" "pipeline_role" {
+  name = "pipeline_role"
+  description = "Role for EC2 instances to pull Docker images from ECR and access S3"
+  
+  assume_role_policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+      { 
+        "Effect": "Allow",
+        "Principal": { "Service": "ec2.amazonaws.com" },
+        "Action": "sts:AssumeRole"
+      }
+    ]
+  })
+ # Attach managed policies for S3 full access and SSM access
+  managed_policy_arns = [
+    "arn:aws:iam::aws:policy/AmazonS3FullAccess",
+    "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  ]
+}
+
+# Define an inline policy for EC2, ECR, and IAM actions
+resource "aws_iam_role_policy" "pipeline_inline_policy" {
+  name   = "pipeline_inline_policy"
+  role   = aws_iam_role.pipeline_role.id
+
+  policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [ "iam:PassRole", "ec2:*", "ecr:*", "ssm:SendCommand", "ssm:GetCommandInvocation" ],
+        "Resource": "*"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_instance_profile" "ec2_profile" {
+  name = "pipeline_role_instance_profile"
+  role = aws_iam_role.pipeline_role.name
 }

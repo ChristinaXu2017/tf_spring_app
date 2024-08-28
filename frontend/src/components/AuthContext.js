@@ -1,5 +1,16 @@
 import { createContext, useContext, useState } from "react";
-import { executeBasicAuthenticationService } from "./ApiService"
+import { Auth } from 'aws-amplify';
+
+// with cognito configuration
+export const awsconfig = {
+    Auth: {
+
+        region: process.env.REACT_APP_COGNITO_REGION,
+        userPoolId: process.env.REACT_APP_USER_POOL_ID,
+        userPoolWebClientId: process.env.REACT_APP_USER_POOL_CLIENT_ID
+    }
+};
+
 //1: Create a Context
 export const AuthContext = createContext()
 export const useAuth = () => useContext(AuthContext)
@@ -10,60 +21,33 @@ export default function AuthProvider({ children }) {
     const [username, setUsername] = useState("");
     //Put some state in the context
     const [isAuthenticated, setAuthenticated] = useState(false)
-
-    // function login(username, password) {
-    //     if (username === 'John' && password === 'aaa') {
-    //         setAuthenticated(true)
-    //         setUsername(username)
-    //         return true
-    //     } else {
-    //         setAuthenticated(false)
-    //         setUsername(null)
-    //         return false
-    //     }
-    // }
-
     const [token, setToken] = useState(null)
-
 
     async function login(username, password) {
 
-        const baToken = 'Basic ' + window.btoa(username + ":" + password)
-
         try {
+            const user = await Auth.signIn(username, password);
+            setAuthenticated(true)
+            setUsername(username)
+            setToken(user.signInUserSession.idToken.jwtToken);
+            return true
 
-            const response = await executeBasicAuthenticationService(baToken)
-
-            if (response.status == 200) {
-                setAuthenticated(true)
-                setUsername(username)
-                setToken(baToken)
-                return true
-            } else {
-                logout()
-                return false
-            }
         } catch (error) {
+            console.error("Login failed", error);
             logout()
             return false
         }
     }
 
-
-
-
-
-
-
     function logout() {
-        setAuthenticated(false)
-        setUsername(null)
+        Auth.signOut();
+        setAuthenticated(false);
+        setToken(null);
+        setUsername("")
     }
 
-
-
     return (
-        <AuthContext.Provider value={{ username, isAuthenticated, login, logout }}>
+        <AuthContext.Provider value={{ username, isAuthenticated, token, login, logout }}>
             {children}
         </AuthContext.Provider>
     )

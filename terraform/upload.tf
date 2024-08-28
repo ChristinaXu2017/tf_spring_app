@@ -4,10 +4,16 @@ data "external" "build" {
     install_command  = var.install-command
     build_command    = var.build-command
     webapp_dir       = var.webapp-dir
-    build_destiation = var.build-destination
+    build_destination = var.build-destination
+
     # front app environment variable
     api_url          = module.app_api.stage_invoke_url
     cdn_url          = "https://${aws_cloudfront_distribution.app_distribution.domain_name}/"
+
+    # front app environment variable from cognito
+    cognito_id     = aws_cognito_user_pool.VaccineUserPool.id
+    cognito_client = aws_cognito_user_pool_client.VaccineUserPool_client.id    
+    cognito_region = var.region
   }
   working_dir = path.module
 }

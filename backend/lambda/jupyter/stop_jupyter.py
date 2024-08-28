@@ -2,20 +2,13 @@ import boto3
 import os
 import json
 
-ECRIMAGE = os.environ['JUPYTER_IMAGE']
-KEYNAME = os.environ['KEY_NAME']
-SGID = os.environ['SECURITY_GROUP']
-INBUCKET = os.environ['INBUCKET']
-EC2IAM = os.environ['EC2IAM']
-AWSREGION = os.environ['AWSREGION']
-HASHPW = os.environ['HASH_JUPYTER_PW']
-DBTABLE = os.environ['DYNAMO_TABLE']
+DYTABLE = os.environ['DYNAMO_TABLE']
 
 ec2 = boto3.client('ec2')
 
 # Store EC2 status to existing table
 dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table(DBTABLE)
+table = dynamodb.Table(DYTABLE)
 
 def lambda_handler(event, context):
     print('Event Received: {}'.format(json.dumps(event)))

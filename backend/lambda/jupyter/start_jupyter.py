@@ -2,6 +2,7 @@ import boto3
 import os
 import json
 import time
+from mRNAid_vaxpress import launch_jupyter
 
 ec2 = boto3.client('ec2')
 
@@ -41,8 +42,6 @@ def lambda_handler(event, context):
                     'id': item['id']
                 }
             )
-
-
 
   # otherwise start a new instance
   print("launching jupyter notebook to access mRNAid and vaxpress!")
