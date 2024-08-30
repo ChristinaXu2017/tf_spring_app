@@ -4,9 +4,9 @@ import json
 import time
 from mRNAid_vaxpress import launch_jupyter
 
-ec2 = boto3.client('ec2')
-
+DBTABLE= os.environ['DYTABLE']
 # store EC2 status to existing table
+ec2 = boto3.client('ec2')
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table(DBTABLE)  
 

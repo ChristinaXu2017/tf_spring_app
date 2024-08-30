@@ -3,12 +3,13 @@ import os
 import json
 import time
 
-ECRIMAGE = os.environ['JUPYTER_IMAGE']
+
+ECRIMAGE = os.environ['ECR_REPO']
 KEYNAME = os.environ['KEY_NAME']
 SGID = os.environ['SECURITY_GROUP']
-INBUCKET = os.environ['INBUCKET']
+INBUCKET = os.environ['BUCKET']
 EC2IAM = os.environ['EC2IAM']
-AWSREGION = os.environ['AWSREGION']
+AWSREGION = os.environ['REGION']
 HASHPW = os.environ['HASH_JUPYTER_PW']
 
 def launch_jupyter():
